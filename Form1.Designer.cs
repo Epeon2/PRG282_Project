@@ -43,30 +43,30 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txbID = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnSummary = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.btnClearUpdateForm = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.nudScoreUpdate = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dtpDoBUpdate = new System.Windows.Forms.DateTimePicker();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txbSuperpowerUpdate = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txbNameUpdate = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.btnSearch = new System.Windows.Forms.Button();
-            this.btnSummary = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
+            this.txbIDUpdate = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudHeroScore)).BeginInit();
             this.tabPage2.SuspendLayout();
-            this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudScoreUpdate)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -218,27 +218,24 @@
             this.tabPage2.Text = "View";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // tabPage3
+            // btnDelete
             // 
-            this.tabPage3.Controls.Add(this.btnSearch);
-            this.tabPage3.Controls.Add(this.btnClearUpdateForm);
-            this.tabPage3.Controls.Add(this.btnUpdate);
-            this.tabPage3.Controls.Add(this.numericUpDown1);
-            this.tabPage3.Controls.Add(this.label6);
-            this.tabPage3.Controls.Add(this.dateTimePicker1);
-            this.tabPage3.Controls.Add(this.label7);
-            this.tabPage3.Controls.Add(this.label8);
-            this.tabPage3.Controls.Add(this.textBox1);
-            this.tabPage3.Controls.Add(this.label9);
-            this.tabPage3.Controls.Add(this.textBox2);
-            this.tabPage3.Controls.Add(this.label10);
-            this.tabPage3.Controls.Add(this.textBox3);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(795, 426);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Update";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.btnDelete.Location = new System.Drawing.Point(357, 325);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(114, 23);
+            this.btnDelete.TabIndex = 2;
+            this.btnDelete.Text = "Delete Hero";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnSummary
+            // 
+            this.btnSummary.Location = new System.Drawing.Point(477, 325);
+            this.btnSummary.Name = "btnSummary";
+            this.btnSummary.Size = new System.Drawing.Size(114, 23);
+            this.btnSummary.TabIndex = 1;
+            this.btnSummary.Text = "Generate Summary";
+            this.btnSummary.UseVisualStyleBackColor = true;
             // 
             // dataGridView1
             // 
@@ -248,6 +245,38 @@
             this.dataGridView1.Size = new System.Drawing.Size(780, 316);
             this.dataGridView1.TabIndex = 0;
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.btnSearch);
+            this.tabPage3.Controls.Add(this.btnClearUpdateForm);
+            this.tabPage3.Controls.Add(this.btnUpdate);
+            this.tabPage3.Controls.Add(this.nudScoreUpdate);
+            this.tabPage3.Controls.Add(this.label6);
+            this.tabPage3.Controls.Add(this.dtpDoBUpdate);
+            this.tabPage3.Controls.Add(this.label7);
+            this.tabPage3.Controls.Add(this.label8);
+            this.tabPage3.Controls.Add(this.txbSuperpowerUpdate);
+            this.tabPage3.Controls.Add(this.label9);
+            this.tabPage3.Controls.Add(this.txbNameUpdate);
+            this.tabPage3.Controls.Add(this.label10);
+            this.tabPage3.Controls.Add(this.txbIDUpdate);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(795, 426);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Update";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Location = new System.Drawing.Point(151, 59);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.TabIndex = 24;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
             // btnClearUpdateForm
             // 
             this.btnClearUpdateForm.Location = new System.Drawing.Point(301, 261);
@@ -256,6 +285,7 @@
             this.btnClearUpdateForm.TabIndex = 23;
             this.btnClearUpdateForm.Text = "Clear All";
             this.btnClearUpdateForm.UseVisualStyleBackColor = true;
+            this.btnClearUpdateForm.Click += new System.EventHandler(this.btnClearUpdateForm_Click);
             // 
             // btnUpdate
             // 
@@ -265,14 +295,15 @@
             this.btnUpdate.TabIndex = 22;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
-            // numericUpDown1
+            // nudScoreUpdate
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(244, 224);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(213, 20);
-            this.numericUpDown1.TabIndex = 21;
-            this.numericUpDown1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nudScoreUpdate.Location = new System.Drawing.Point(244, 224);
+            this.nudScoreUpdate.Name = "nudScoreUpdate";
+            this.nudScoreUpdate.Size = new System.Drawing.Size(213, 20);
+            this.nudScoreUpdate.TabIndex = 21;
+            this.nudScoreUpdate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label6
             // 
@@ -283,12 +314,12 @@
             this.label6.TabIndex = 20;
             this.label6.Text = "Hero Exam Score";
             // 
-            // dateTimePicker1
+            // dtpDoBUpdate
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(241, 75);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(216, 20);
-            this.dateTimePicker1.TabIndex = 19;
+            this.dtpDoBUpdate.Location = new System.Drawing.Point(241, 75);
+            this.dtpDoBUpdate.Name = "dtpDoBUpdate";
+            this.dtpDoBUpdate.Size = new System.Drawing.Size(216, 20);
+            this.dtpDoBUpdate.TabIndex = 19;
             // 
             // label7
             // 
@@ -308,13 +339,13 @@
             this.label8.TabIndex = 17;
             this.label8.Text = "Hero Superpower";
             // 
-            // textBox1
+            // txbSuperpowerUpdate
             // 
-            this.textBox1.Location = new System.Drawing.Point(241, 123);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(216, 73);
-            this.textBox1.TabIndex = 16;
+            this.txbSuperpowerUpdate.Location = new System.Drawing.Point(241, 123);
+            this.txbSuperpowerUpdate.Multiline = true;
+            this.txbSuperpowerUpdate.Name = "txbSuperpowerUpdate";
+            this.txbSuperpowerUpdate.Size = new System.Drawing.Size(216, 73);
+            this.txbSuperpowerUpdate.TabIndex = 16;
             // 
             // label9
             // 
@@ -325,12 +356,12 @@
             this.label9.TabIndex = 15;
             this.label9.Text = "Hero Name";
             // 
-            // textBox2
+            // txbNameUpdate
             // 
-            this.textBox2.Location = new System.Drawing.Point(241, 29);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(216, 20);
-            this.textBox2.TabIndex = 14;
+            this.txbNameUpdate.Location = new System.Drawing.Point(241, 29);
+            this.txbNameUpdate.Name = "txbNameUpdate";
+            this.txbNameUpdate.Size = new System.Drawing.Size(216, 20);
+            this.txbNameUpdate.TabIndex = 14;
             // 
             // label10
             // 
@@ -341,39 +372,12 @@
             this.label10.TabIndex = 13;
             this.label10.Text = "HeroID";
             // 
-            // textBox3
+            // txbIDUpdate
             // 
-            this.textBox3.Location = new System.Drawing.Point(10, 29);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(216, 20);
-            this.textBox3.TabIndex = 12;
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.Location = new System.Drawing.Point(151, 59);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 23);
-            this.btnSearch.TabIndex = 24;
-            this.btnSearch.Text = "Search";
-            this.btnSearch.UseVisualStyleBackColor = true;
-            // 
-            // btnSummary
-            // 
-            this.btnSummary.Location = new System.Drawing.Point(477, 325);
-            this.btnSummary.Name = "btnSummary";
-            this.btnSummary.Size = new System.Drawing.Size(114, 23);
-            this.btnSummary.TabIndex = 1;
-            this.btnSummary.Text = "Generate Summary";
-            this.btnSummary.UseVisualStyleBackColor = true;
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Location = new System.Drawing.Point(357, 325);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(114, 23);
-            this.btnDelete.TabIndex = 2;
-            this.btnDelete.Text = "Delete Hero";
-            this.btnDelete.UseVisualStyleBackColor = true;
+            this.txbIDUpdate.Location = new System.Drawing.Point(10, 29);
+            this.txbIDUpdate.Name = "txbIDUpdate";
+            this.txbIDUpdate.Size = new System.Drawing.Size(216, 20);
+            this.txbIDUpdate.TabIndex = 12;
             // 
             // Form1
             // 
@@ -388,10 +392,10 @@
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudHeroScore)).EndInit();
             this.tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudScoreUpdate)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -417,16 +421,16 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnClearUpdateForm;
         private System.Windows.Forms.Button btnUpdate;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown nudScoreUpdate;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dtpDoBUpdate;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txbSuperpowerUpdate;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txbNameUpdate;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txbIDUpdate;
         private System.Windows.Forms.Button btnSummary;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnDelete;

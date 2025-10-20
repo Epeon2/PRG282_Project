@@ -42,16 +42,16 @@ namespace PRG282_Project
         {
             switch (ExamScore) {
                 case int n when n <= 40:
-                    this.Rank = HeroRankThreat.Keys.ElementAt(0);
+                    this.Rank = HeroRankThreat.Keys.ElementAt(3);
                     break;
                 case int n when n <= 60:
-                    this.Rank = HeroRankThreat.Keys.ElementAt(1);
-                    break;
-                case int n when n <= 80:
                     this.Rank = HeroRankThreat.Keys.ElementAt(2);
                     break;
+                case int n when n <= 80:
+                    this.Rank = HeroRankThreat.Keys.ElementAt(1);
+                    break;
                 case int n when n <= 100:
-                    this.Rank = HeroRankThreat.Keys.ElementAt(3);
+                    this.Rank = HeroRankThreat.Keys.ElementAt(0);
                     break;
                 default:
                     MessageBox.Show("Bad Grade. Error.");
