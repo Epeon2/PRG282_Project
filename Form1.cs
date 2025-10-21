@@ -24,6 +24,8 @@ namespace PRG282_Project
             InitializeComponent();
         }
 
+        bool checkView = true;
+
         string path = "superheros.txt";
 
         // --- Save a single hero record to file ---
@@ -73,7 +75,12 @@ namespace PRG282_Project
                 var today = DateTime.Today;
                 int age = today.Year - dtpDOB.Value.Year;
                 if (dtpDOB.Value.Date > today.AddYears(-age)) age--;
-
+                //checking for valid age
+                if (age<=0) 
+                {
+                    MessageBox.Show("Invalid Age entered, please enter valid age");
+                    return;
+                }
                 Hero newHero = new Hero(id, txbName.Text, age, txbSuperpower.Text, examScore);
 
                 // Display hero info
@@ -206,6 +213,8 @@ namespace PRG282_Project
         //Showing all heroes
         private void ShowHeroes()
         {
+            //ensuring allowed to delete thanks to checkView
+            checkView = true;
             dataGridView1.DataSource = GetData();
             dataGridView1.Columns[0].Width = 30;
             dataGridView1.Columns[2].Width = 30;
@@ -301,6 +310,10 @@ namespace PRG282_Project
         // --- Delete selected hero record ---
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            //ensuring there is data to be deleted
+            if (checkView)
+            
+            {
             //Catching Errors
             try
             {
@@ -325,6 +338,103 @@ namespace PRG282_Project
             {
                 MessageBox.Show($"Error deleting hero: {ex.Message}", "Error");
             }
+
+            }
+            else
+            {
+                MessageBox.Show("Please make sure you are viewing the superheros you with to delete");
+            }
+        }
+        //generating summary
+        private void btnSummary_Click(object sender, EventArgs e)
+        {
+            //craeting table for summary view
+            checkView = false;
+            DataTable dt = new DataTable();
+            dt.Columns.Add("Number of Superheros", typeof(string));
+            dt.Columns.Add("Average age of Superheros", typeof(string));
+            dt.Columns.Add("Average Exam Score");
+            dt.Columns.Add("Heros in S-Rank", typeof(string));
+            dt.Columns.Add("Heros in A-Rank", typeof(string));
+            dt.Columns.Add("Heros in B-Rank", typeof(string));
+            dt.Columns.Add("Heros in C-Rank", typeof(string));
+            int countHeros = 0, sRank = 0, aRank = 0, bRank = 0, cRank = 0, tempAge = 0, tempScore = 0;
+            double aveAge, aveExam;
+            try
+            {
+                //fetching data to use in summary
+                using (StreamReader sr = new StreamReader(path))
+                {
+                    string line;
+                    while ((line = sr.ReadLine()) != null && line.Trim() != "")
+                    {
+                        //Adding each Hero that exists to Array
+                        string[] parts = line.Split(';');
+                        if (parts.Length == 5)
+                        {
+                            Hero hero = new Hero(
+                                int.Parse(parts[0]),
+                                parts[1],
+                                int.Parse(parts[2]),
+                                parts[3],
+                                int.Parse(parts[4])
+                            );
+                            //calculating summary data
+                            countHeros++;
+                            tempAge += hero.Age;
+                            tempScore += hero.ExamScore;
+                            switch (hero.Rank)
+                            {
+                                case "S - Rank":
+                                    sRank++;
+                                    break;
+                                case "A-Rank":
+                                    aRank++;
+                                    break;
+                                case "B-Rank":
+                                    bRank++;
+                                    break;
+                                case "C-Rank":
+                                    cRank++;
+                                    break;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex) 
+            {
+                MessageBox.Show("Error " + ex.ToString() + " caught");
+            }
+            //final summary calculation and display
+            aveAge = tempAge / countHeros;
+            aveExam = tempScore / countHeros;
+            dt.Rows.Add(countHeros, aveAge, aveExam, sRank, aRank, bRank, cRank);
+            dataGridView1.DataSource = dt;
+            //writing summary to text file
+            try
+            {
+                using (StreamWriter sw = new StreamWriter("Summary.txt"))
+                {
+                    sw.WriteLine("Number of Superheros: " + countHeros);
+                    sw.WriteLine("Average age of Heros: " + aveAge);
+                    sw.WriteLine("Average Exam Score of Heros: " + aveExam);
+                    sw.WriteLine("Number of Heros in S-Rank: " + sRank);
+                    sw.WriteLine("Number of Heros in A-Rank: " + aRank);
+                    sw.WriteLine("Number of Heros in B-Rank: " + bRank);
+                    sw.WriteLine("Number of Heros in C-Rank: " + cRank);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error saving summary: {ex.Message}", "File Error");
+            }
+
+        }
+        //Allow to re-view the heroes that exists
+        private void btnViewHeros_Click(object sender, EventArgs e)
+        {
+            ShowHeroes();
         }
     }
 }

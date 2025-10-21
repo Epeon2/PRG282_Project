@@ -60,6 +60,7 @@
             this.txbNameUpdate = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.txbIDUpdate = new System.Windows.Forms.TextBox();
+            this.btnViewHeros = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudHeroScore)).BeginInit();
@@ -207,6 +208,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.btnViewHeros);
             this.tabPage2.Controls.Add(this.btnDelete);
             this.tabPage2.Controls.Add(this.btnSummary);
             this.tabPage2.Controls.Add(this.dataGridView1);
@@ -236,6 +238,7 @@
             this.btnSummary.TabIndex = 1;
             this.btnSummary.Text = "Generate Summary";
             this.btnSummary.UseVisualStyleBackColor = true;
+            this.btnSummary.Click += new System.EventHandler(this.btnSummary_Click);
             // 
             // dataGridView1
             // 
@@ -379,6 +382,16 @@
             this.txbIDUpdate.Size = new System.Drawing.Size(216, 20);
             this.txbIDUpdate.TabIndex = 12;
             // 
+            // btnViewHeros
+            // 
+            this.btnViewHeros.Location = new System.Drawing.Point(251, 325);
+            this.btnViewHeros.Name = "btnViewHeros";
+            this.btnViewHeros.Size = new System.Drawing.Size(100, 23);
+            this.btnViewHeros.TabIndex = 3;
+            this.btnViewHeros.Text = "View Heros";
+            this.btnViewHeros.UseVisualStyleBackColor = true;
+            this.btnViewHeros.Click += new System.EventHandler(this.btnViewHeros_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -434,6 +447,7 @@
         private System.Windows.Forms.Button btnSummary;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnViewHeros;
     }
 }
 
