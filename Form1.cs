@@ -29,6 +29,7 @@ namespace PRG282_Project
         // --- Save a single hero record to file ---
         private void SaveHero(Hero hero, bool append)
         {
+            //attempt to write, catch error if necessary
             try
             {
                 using (StreamWriter sw = new StreamWriter(path, append))
@@ -47,20 +48,20 @@ namespace PRG282_Project
         {
             try
             {
-                // Input validation
+                //Validate WhiteSpace
                 if (string.IsNullOrWhiteSpace(txbID.Text) || string.IsNullOrWhiteSpace(txbName.Text) ||
                     string.IsNullOrWhiteSpace(txbSuperpower.Text))
                 {
                     MessageBox.Show("Please fill in all fields.", "Validation Error");
                     return;
                 }
-
+                //Validate Number
                 if (!int.TryParse(txbID.Text, out int id))
                 {
                     MessageBox.Show("Hero ID must be a valid number.", "Validation Error");
                     return;
                 }
-
+                //Validate Number Range
                 int examScore = (int)nudHeroScore.Value;
                 if (examScore < 0 || examScore > 100)
                 {
@@ -88,7 +89,7 @@ namespace PRG282_Project
             }
         }
 
-
+        //Clear input text boxes
         private void btnClear_Click(object sender, EventArgs e)
         {
             var confirmResult = MessageBox.Show("Clear all form inputs?", "Warning!", MessageBoxButtons.OKCancel);
@@ -125,7 +126,7 @@ namespace PRG282_Project
         }
 
 
-
+        //Fetching Data from File and displaying in table
         private DataTable GetData()
         {
             DataTable dt = new DataTable();
@@ -137,6 +138,7 @@ namespace PRG282_Project
             dt.Columns.Add("Rank", typeof(string));
             dt.Columns.Add("Threat Level", typeof(string));
 
+            //Attempting to read data from File
             try
             {
                 if (!File.Exists(path))
@@ -144,12 +146,13 @@ namespace PRG282_Project
                     File.Create(path).Close(); // create empty file if missing
                     return dt;
                 }
-
+                //Read Data from File knowing it exists
                 using (StreamReader sr = new StreamReader(path))
                 {
                     string line;
                     while ((line = sr.ReadLine()) != null && line.Trim() != "")
                     {
+                        //Adding each Hero that exists to Array
                         string[] parts = line.Split(';');
                         if (parts.Length == 5)
                         {
@@ -160,6 +163,7 @@ namespace PRG282_Project
                                 parts[3],
                                 int.Parse(parts[4])
                             );
+                            //Adding Hero to the Array for display
                             dt.Rows.Add(hero.ToStringArray());
                         }
                     }
@@ -172,8 +176,7 @@ namespace PRG282_Project
 
             return dt;
         }
-
-
+        //adding data back in to the text file after changes
         private void SaveDataAll(DataTable dt)
         {
             try
@@ -200,7 +203,7 @@ namespace PRG282_Project
             }
         }
 
-
+        //Showing all heroes
         private void ShowHeroes()
         {
             dataGridView1.DataSource = GetData();
@@ -210,7 +213,7 @@ namespace PRG282_Project
             dataGridView1.Columns[6].Width = 400;
             dataGridView1.Refresh();
         }
-
+        //clear data in the update Form
         private void btnClearUpdateForm_Click(object sender, EventArgs e)
         {
             txbIDUpdate.Clear();
@@ -222,20 +225,21 @@ namespace PRG282_Project
 
         }
 
-
+        //Search for a hero
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            //checks for WhiteSpace
             if (string.IsNullOrWhiteSpace(txbIDUpdate.Text))
             {
                 MessageBox.Show("Enter a Hero ID to search.", "Validation Error");
                 return;
             }
-
+            //Attempt  to fetch Data, otherwise Catch Error
             try
             {
                 DataTable dt = GetData();
                 DataRow[] result = dt.Select($"ID = '{txbIDUpdate.Text}'");
-
+                //Checking for adequate Data
                 if (result.Length == 0)
                 {
                     MessageBox.Show("No hero found with that ID.", "Not Found");
@@ -254,11 +258,13 @@ namespace PRG282_Project
             }
         }
 
-
+        //Update Button and send data to Text File
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            //Attempt to execute otherwise catch error
             try
             {
+                //Check for WhiteSpace
                 if (string.IsNullOrWhiteSpace(txbIDUpdate.Text))
                 {
                     MessageBox.Show("Enter a valid Hero ID to update.", "Validation Error");
@@ -273,7 +279,7 @@ namespace PRG282_Project
                     MessageBox.Show("No hero found to update.", "Error");
                     return;
                 }
-
+                //Takes Data and sends in to Text File
                 DataRow row = result[0];
                 int age = DateTime.Today.Year - dtpDoBUpdate.Value.Year;
                 if (dtpDoBUpdate.Value.Date > DateTime.Today.AddYears(-age)) age--;
@@ -295,6 +301,7 @@ namespace PRG282_Project
         // --- Delete selected hero record ---
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            //Catching Errors
             try
             {
                 if (dataGridView1.CurrentRow == null)
@@ -305,7 +312,7 @@ namespace PRG282_Project
 
                 if (MessageBox.Show("Delete selected hero?", "Confirm Delete", MessageBoxButtons.OKCancel) != DialogResult.OK)
                     return;
-
+                //Execute Deletion
                 int rowIndex = dataGridView1.CurrentRow.Index;
                 DataTable dt = (DataTable)dataGridView1.DataSource;
                 dt.Rows.RemoveAt(rowIndex);

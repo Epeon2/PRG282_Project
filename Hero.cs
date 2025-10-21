@@ -10,7 +10,7 @@ namespace PRG282_Project
 {
     internal class Hero
     {
-
+        //Establishing Dictionary for heroes
         public static Dictionary<string, string> HeroRankThreat = new Dictionary<string, string>
         {
            {"S-Rank", "Finals Week (threat to the entire academy)"},
@@ -19,7 +19,7 @@ namespace PRG282_Project
            {"C-Rank", "Pop Quiz (potential threat to an individual student)"},
         };
 
-
+        //Instantiating Properties
         public int Id { get; set; }
         public string Name { get; set; }
         public int Age { get; set; }
@@ -28,6 +28,7 @@ namespace PRG282_Project
         public string Rank { get; set; }
         public string ThreatLevel { get; set; }
 
+        //Establishing Hero Class
         public Hero(int id, string name, int age, string superpower, int examScore)
         {
             Id = id;
@@ -38,6 +39,7 @@ namespace PRG282_Project
             calcRank();
         }
 
+        //Rank Calculation of heroes based on Exam score using Switch Case
         public void calcRank()
         {
             switch (ExamScore) {
@@ -59,17 +61,20 @@ namespace PRG282_Project
             }
             calcThreatLevel(this.Rank);
         }
-
+        
+        //Overriding Threat Level based on Calculated Threat Level
         public void calcThreatLevel(string rank)
         {
             this.ThreatLevel = HeroRankThreat[Rank];
         }
 
+        //Overriding To String Method
         public override string ToString()
         {
             return $"{Id};{Name};{Age};{Superpower};{ExamScore}";
         }
 
+        //Establishing toString Array output
         public string[] ToStringArray()
         {
             string[] output = {Id.ToString(), Name, Age.ToString(), Superpower, ExamScore.ToString(), Rank, ThreatLevel};
