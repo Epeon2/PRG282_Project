@@ -14,6 +14,8 @@ using System.Xml.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
 
+//Group Members: Aidan Lakmeeharan, Aidan Smith, Steven Trifonov, Kasper Van Niekerk
+
 namespace PRG282_Project
 {
     public partial class Form1 : Form
@@ -385,7 +387,7 @@ namespace PRG282_Project
                             tempScore += hero.ExamScore;
                             switch (hero.Rank)
                             {
-                                case "S - Rank":
+                                case "S-Rank":
                                     sRank++;
                                     break;
                                 case "A-Rank":
